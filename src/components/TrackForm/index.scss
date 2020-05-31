@@ -1,0 +1,37 @@
+.track-form-wrapper {
+  margin: 30px auto;
+  max-width: 800px;
+
+  .ant-card {
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(93, 93, 93, 0.5);
+    border-radius: 4px;
+  }
+
+  .ant-typography {
+    color: #2e4369;
+    margin-bottom: 0.8em;
+  }
+}
+
+.ant-select-item-option-content {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  font-weight: bold;
+
+  .currency-flag {
+    margin-right: 10px;
+  }
+}
+
+.ant-select-selection-item {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+
+  .currency-flag {
+    margin-right: 10px;
+  }
+}

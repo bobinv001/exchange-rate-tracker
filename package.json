@@ -1,8 +1,8 @@
 {
-  "name": "rtk-todo",
+  "name": "exchange-rate-tracker",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+  "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -10,10 +10,21 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "@types/rebass": "^4.0.6",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.2.1",
+    "antd": "^4.2.5",
+    "mastercard-currency-conversion": "^1.0.1",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rebass": "^4.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
