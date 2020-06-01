@@ -1,0 +1,9 @@
+.ant-card-head-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .remove-button {
+    transform: scale(0.8);
+  }
+}
