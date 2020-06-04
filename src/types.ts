@@ -8,4 +8,5 @@ export type ComparisonKeys = keyof ICurrencyComparison;
 export interface ITracker extends ICurrencyComparison {
   amount: number;
   rate: number;
+  uuid: string;
 }

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Row } from 'antd';
+import { v4 as uuid } from 'uuid';
 
 import TrackForm from '../TrackForm';
 import TrackCard from '../TrackCard';
@@ -35,10 +36,10 @@ const App: FC = () => {
       })();
     }
     initialMount.current = false;
-  }, [trackers]);
+  }, [trackers, setTrackers]);
 
   React.useEffect(() => {
-    if (!currencies) {
+    if (!currencies.length) {
       (async () => {
         try {
           const currencySymbols = await service.getCurrencies();
@@ -50,24 +51,35 @@ const App: FC = () => {
     }
   }, [currencies, setCurrencies]);
 
-  const onTrackNewFx = async (comparison: ICurrencyComparison, amount: number) => {
+  const onAddTracker = async (comparison: ICurrencyComparison, amount: number) => {
     const rate = await service.getExchangeRate(comparison);
-    const newTracker = {
-      to: comparison.to,
-      from: comparison.from,
-      amount,
-      rate,
-    };
-    setTrackers([...trackers, newTracker]);
-    setTrackersToStorage([...trackersFromStorage, newTracker]);
+    const updatedTrackers = [
+      ...trackers,
+      {
+        uuid: uuid(),
+        amount,
+        rate,
+        ...comparison,
+      },
+    ];
+    setTrackers(updatedTrackers);
+    setTrackersToStorage(updatedTrackers);
+  };
+
+  const onRemoveTracker = (uuid: string) => {
+    setTrackers(prevTrackers => {
+      const updatedTrackers = prevTrackers.filter(tracker => tracker.uuid !== uuid);
+      setTrackersToStorage(updatedTrackers);
+      return updatedTrackers;
+    });
   };
 
   return (
     <div className="page-wrapper">
-      {currencies && <TrackForm allCurrencies={currencies} trackNewRate={onTrackNewFx} />}
+      {currencies && <TrackForm allCurrencies={currencies} addTracker={onAddTracker} />}
       <Row gutter={[16, 16]}>
         {trackers.map(tracker => {
-          return <TrackCard {...tracker} />;
+          return <TrackCard {...tracker} key={tracker.uuid} removeTracker={onRemoveTracker} />;
         })}
       </Row>
     </div>

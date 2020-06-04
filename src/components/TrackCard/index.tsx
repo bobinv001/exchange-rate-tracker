@@ -3,13 +3,14 @@ import { Col, Card, Space, Button } from 'antd';
 import { ArrowRightOutlined, CloseOutlined } from '@ant-design/icons';
 import Title from 'antd/lib/typography/Title';
 
-import { ICurrencyComparison } from '../../types';
+import { ITracker } from '../../types';
 
 import './index.scss';
 
-interface IProps extends ICurrencyComparison {
+interface IProps extends ITracker {
   amount: number;
   rate: number;
+  removeTracker: (uuid: string) => void;
 }
 
 const CurrencyWithFlag: React.FC<{ currency: string }> = ({ currency }) => (
@@ -17,6 +18,10 @@ const CurrencyWithFlag: React.FC<{ currency: string }> = ({ currency }) => (
 );
 
 const TrackCard: React.FC<IProps> = props => {
+  const onRemoveClick = () => {
+    props.removeTracker(props.uuid);
+  };
+
   const cardTitle = (
     <Fragment>
       <Space align="center">
@@ -24,12 +29,12 @@ const TrackCard: React.FC<IProps> = props => {
         {props.from} <ArrowRightOutlined /> {props.to}
         <CurrencyWithFlag currency={props.to} />
       </Space>
-      <Button type="dashed" icon={<CloseOutlined />} className="remove-button" /*TODO use uuid onClick={props.removeTracker}*/ />
+      <Button type="dashed" icon={<CloseOutlined />} className="remove-button" onClick={onRemoveClick} />
     </Fragment>
   );
 
   return (
-    <Col span={8}>
+    <Col xs={24} xl={8} sm={12}>
       <Card bordered={false} title={cardTitle}>
         <Title level={4}>
           {props.amount} {props.from} = {props.amount * props.rate} {props.to}

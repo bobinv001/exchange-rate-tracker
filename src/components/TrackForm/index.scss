@@ -1,37 +1,86 @@
+.grid .item {
+  background-color: silver;
+  padding: 8px;
+}
+
 .track-form-wrapper {
   margin: 30px auto;
-  max-width: 800px;
+  max-width: 600px;
 
   .ant-card {
     display: flex;
     justify-content: center;
     box-shadow: 0 5px 15px rgba(93, 93, 93, 0.5);
     border-radius: 4px;
+    &-body {
+      width: 100%;
+    }
   }
 
   .ant-typography {
     color: #2e4369;
     margin-bottom: 0.8em;
   }
-}
 
-.ant-select-item-option-content {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  font-weight: bold;
+  .currency-dropdowns-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+    @media only screen and (max-width: 37.5em) {
+      flex-direction: column;
 
-  .currency-flag {
-    margin-right: 10px;
+      .ant-select {
+        width: 100%;
+      }
+
+      .anticon-swap {
+        margin: 0.5em 0;
+      }
+    }
+
+    .ant-select {
+      flex: 1;
+    }
+
+    .anticon-swap {
+      margin: 0 0.5em;
+    }
+  }
+
+  .amount-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+
+    .ant-input-affix-wrapper {
+      max-width: 200px;
+      margin-right: 0.3em;
+      font-size: 20px;
+      color: #999;
+
+      input {
+        font-size: inherit;
+      }
+    }
+
+    button {
+      height: 100%;
+      width: 100px;
+    }
   }
 }
 
+.ant-select-item-option-content,
 .ant-select-selection-item {
   display: flex;
   align-items: center;
   font-weight: bold;
 
   .currency-flag {
-    margin-right: 10px;
+    margin-right: 0.5em;
   }
+}
+
+.ant-select-item-option-content {
+  padding: 0.2em;
 }
